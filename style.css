@@ -4,27 +4,64 @@
   box-sizing: border-box;
 }
 
+:root {
+  --bg: #f7f7fa;
+  --bg-card: #ffffff;
+  --text: #1e1e2e;
+  --text-muted: #5c5c70;
+  --border: #e2e2ea;
+  --accent: #4361ee;
+  --perigo: #e5484d;
+}
+
+body.dark {
+  --bg: #16161e;
+  --bg-card: #1e1e2e;
+  --text: #e4e4ef;
+  --text-muted: #9c9caa;
+  --border: #33334a;
+  --accent: #7c93ff;
+  --perigo: #ff6b6f;
+}
+
 body {
-  background-color: #f7f7fa;
+  background-color: var(--bg);
+  color: var(--text);
   font-family: system-ui, sans-serif;
   display: flex;
   justify-content: center;
   padding-top: 60px;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .app {
   width: 100%;
   max-width: 420px;
-  background: white;
+  background: var(--bg-card);
   border-radius: 12px;
   padding: 24px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
   text-align: center;
+}
+
+.topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 h1 {
   font-size: 1.4rem;
-  margin-bottom: 20px;
+}
+
+.toggle-tema {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
 }
 
 #form-cidade {
@@ -36,16 +73,18 @@ h1 {
 #input-cidade {
   flex: 1;
   padding: 10px 12px;
-  border: 1px solid #e2e2ea;
+  border: 1px solid var(--border);
   border-radius: 8px;
   font-size: 0.95rem;
+  background: var(--bg-card);
+  color: var(--text);
 }
 
 #form-cidade button {
   padding: 10px 16px;
   border: none;
   border-radius: 8px;
-  background-color: #4361ee;
+  background-color: var(--accent);
   color: white;
   font-weight: 600;
   cursor: pointer;
@@ -60,6 +99,11 @@ h1 {
   gap: 4px;
 }
 
+.resultado .icone {
+  font-size: 3rem;
+  line-height: 1;
+}
+
 .resultado .cidade {
   font-size: 1.1rem;
   font-weight: 600;
@@ -68,20 +112,15 @@ h1 {
 .resultado .temperatura {
   font-size: 2.2rem;
   font-weight: 700;
-  color: #4361ee;
+  color: var(--accent);
 }
 
 .resultado .descricao {
-  color: #5c5c70;
+  color: var(--text-muted);
   font-size: 0.95rem;
 }
 
 .resultado .erro {
-  color: #e5484d;
+  color: var(--perigo);
   font-size: 0.95rem;
-}
-
-.resultado .icone {
-  font-size: 3rem;
-  line-height: 1;
 }
