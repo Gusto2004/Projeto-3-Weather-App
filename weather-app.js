@@ -32,3 +32,17 @@ form.addEventListener("submit", async function (evento) {
     resultado.innerHTML = `<span class="erro">Não foi possível encontrar essa cidade 😕</span>`;
   }
 });
+
+function obterIcone(descricao) {
+  const texto = descricao.toLowerCase();
+
+  if (texto.includes("sunny") || texto.includes("clear")) return "☀️";
+  if (texto.includes("partly cloudy")) return "⛅";
+  if (texto.includes("cloudy") || texto.includes("overcast")) return "☁️";
+  if (texto.includes("rain") || texto.includes("drizzle")) return "🌧️";
+  if (texto.includes("thunder")) return "⛈️";
+  if (texto.includes("snow")) return "❄️";
+  if (texto.includes("fog") || texto.includes("mist")) return "🌫️";
+
+  return "🌡️";
+}
