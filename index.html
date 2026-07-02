@@ -7,11 +7,13 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body class="dark">
-    <div class="topo">
-  <h1>Como está o tempo?</h1>
-  <button id="toggle-tema" class="toggle-tema" aria-label="Alternar tema">☀️</button>
-</div>
     <main class="app">
+      <div class="topo">
+        <h1>Como está o tempo?</h1>
+        <button id="toggle-tema" class="toggle-tema" aria-label="Alternar tema">
+          ☀️
+        </button>
+      </div>
 
       <form id="form-cidade">
         <input
@@ -23,9 +25,7 @@
         <button type="submit">Pesquisar</button>
       </form>
 
-      <div id="resultado" class="resultado">
-        <!-- o resultado do tempo vai aparecer aqui -->
-      </div>
+      <div id="resultado" class="resultado"></div>
     </main>
 
     <script src="weather-app.js"></script>
