@@ -22,8 +22,10 @@ form.addEventListener("submit", async function (evento) {
     const temperatura = dados.current_condition[0].temp_C;
     const descricao = dados.current_condition[0].weatherDesc[0].value;
     const nomeCidade = dados.nearest_area[0].areaName[0].value;
+    const icone = obterIcone(descricao);
 
     resultado.innerHTML = `
+      <span class="icone">${icone}</span>
       <span class="cidade">${nomeCidade}</span>
       <span class="temperatura">${temperatura}°C</span>
       <span class="descricao">${descricao}</span>
