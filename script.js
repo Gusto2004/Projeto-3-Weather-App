@@ -1,12 +1,12 @@
-const form = document.querySelector('#form-cidade');
-const input = document.querySelector('#input-cidade');
-const resultado = document.querySelector('#resultado');
+const form = document.querySelector("#form-cidade");
+const input = document.querySelector("#input-cidade");
+const resultado = document.querySelector("#resultado");
 
-form.addEventListener('submit', async function (evento) {
+form.addEventListener("submit", async function (evento) {
   evento.preventDefault();
 
   const cidade = input.value.trim();
-  if (cidade === '') return;
+  if (cidade === "") return;
 
   resultado.innerHTML = '<span class="descricao">A procurar...</span>';
 
@@ -14,7 +14,7 @@ form.addEventListener('submit', async function (evento) {
     const resposta = await fetch(`https://wttr.in/${cidade}?format=j1`);
 
     if (!resposta.ok) {
-      throw new Error('Cidade não encontrada');
+      throw new Error("Cidade não encontrada");
     }
 
     const dados = await resposta.json();
@@ -28,7 +28,6 @@ form.addEventListener('submit', async function (evento) {
       <span class="temperatura">${temperatura}°C</span>
       <span class="descricao">${descricao}</span>
     `;
-
   } catch (erro) {
     resultado.innerHTML = `<span class="erro">Não foi possível encontrar essa cidade 😕</span>`;
   }
