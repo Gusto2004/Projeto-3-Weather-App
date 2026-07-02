@@ -80,3 +80,8 @@ h1 {
   color: #e5484d;
   font-size: 0.95rem;
 }
+
+.resultado .icone {
+  font-size: 3rem;
+  line-height: 1;
+}
