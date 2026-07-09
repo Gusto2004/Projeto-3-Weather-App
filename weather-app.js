@@ -2,12 +2,7 @@ const form = document.querySelector("#form-cidade");
 const input = document.querySelector("#input-cidade");
 const resultado = document.querySelector("#resultado");
 
-form.addEventListener("submit", async function (evento) {
-  evento.preventDefault();
-
-  const cidade = input.value.trim();
-  if (cidade === "") return;
-
+async function procurarTempo(cidade) {
   resultado.innerHTML = '<span class="descricao">A procurar...</span>';
 
   try {
@@ -30,9 +25,21 @@ form.addEventListener("submit", async function (evento) {
       <span class="temperatura">${temperatura}°C</span>
       <span class="descricao">${descricao}</span>
     `;
+
+    // Guardar a última cidade pesquisada com sucesso
+    localStorage.setItem("ultimaCidade", cidade);
   } catch (erro) {
     resultado.innerHTML = `<span class="erro">Não foi possível encontrar essa cidade 😕</span>`;
   }
+}
+
+form.addEventListener("submit", function (evento) {
+  evento.preventDefault();
+
+  const cidade = input.value.trim();
+  if (cidade === "") return;
+
+  procurarTempo(cidade);
 });
 
 function obterIcone(descricao) {
@@ -49,15 +56,35 @@ function obterIcone(descricao) {
   return "🌡️";
 }
 
+// Ao abrir a página, se houver uma última cidade guardada, mostra logo o tempo dela
+const ultimaCidade = localStorage.getItem("ultimaCidade");
+if (ultimaCidade) {
+  input.value = ultimaCidade;
+  procurarTempo(ultimaCidade);
+}
+
+// ===== TEMA (com memória) =====
 const botaoTema = document.querySelector("#toggle-tema");
 const body = document.body;
+
+const temaGuardado = localStorage.getItem("tema");
+
+if (temaGuardado === "claro") {
+  body.classList.remove("dark");
+  botaoTema.textContent = "🌙";
+} else {
+  body.classList.add("dark");
+  botaoTema.textContent = "☀️";
+}
 
 botaoTema.addEventListener("click", function () {
   body.classList.toggle("dark");
 
   if (body.classList.contains("dark")) {
     botaoTema.textContent = "☀️";
+    localStorage.setItem("tema", "escuro");
   } else {
     botaoTema.textContent = "🌙";
+    localStorage.setItem("tema", "claro");
   }
 });
